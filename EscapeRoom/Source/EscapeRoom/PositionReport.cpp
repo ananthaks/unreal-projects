@@ -2,6 +2,7 @@
 
 #include "PositionReport.h"
 #include "GameFramework/Actor.h"
+#include <string>
 
 
 // Sets default values for this component's properties
@@ -24,7 +25,13 @@ void UPositionReport::BeginPlay()
 
 	FString objName = actor->GetName();
 
-	UE_LOG(LogTemp, Warning, TEXT("UPositionReport :: BeginPlay() >>> %s "), *objName);
+	FVector posVec = actor->GetTransform().GetLocation();
+	
+	//FString objPos = ("X = " + std::to_string(posVec[0]) + "  Y = " + std::to_string(posVec[1]));
+
+	FString objPos = posVec.ToString();
+
+	UE_LOG(LogTemp, Warning, TEXT("%s is at %s "), *objName, *objPos);
 	
 }
 
